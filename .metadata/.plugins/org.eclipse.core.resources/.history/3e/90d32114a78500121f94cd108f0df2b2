@@ -1,0 +1,14 @@
+import tester.Tester;
+
+
+public class Examples {
+emptyDict<Integer> e = new emptyDict<Integer>();
+	
+	public boolean test2(Tester t) {
+		return t.checkExpect(e.hasKey("blue"), false);
+	}
+	
+	public boolean test3(Tester t) {
+		return t.checkExpect(e.set("one", 1), new consDict<Integer>("one", 1, e));
+	}
+}

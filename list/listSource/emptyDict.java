@@ -1,0 +1,34 @@
+import tester.Tester;
+public class emptyDict<V> implements Dict<V> {
+	// has-key : Key -> Boolean
+	// Does the given key exist?
+	public boolean hasKey(String key) {
+		return false;
+	}
+	// lookup : Key -> V
+	// The value mapped to by the given key
+	public V lookUp(String key) { 
+		throw new RuntimeException("There is no associated value, DAMN YOU");
+	}
+	// set : Key V -> Dict<V>
+	// Set the given key-value mapping
+	public Dict<V> set(String key, V v) {
+		return new consDict<V>(key, v, this);
+	}
+	
+	public List<String> keys() {
+		return new Empty<String>();
+	}
+	
+	public List<V> values() {
+		return new Empty<V>();
+	}
+	
+	public Dict<V> update(String key, Func<V,V> f) {
+		return this;
+	}
+	
+	public emptyDict() {}
+	
+	
+}

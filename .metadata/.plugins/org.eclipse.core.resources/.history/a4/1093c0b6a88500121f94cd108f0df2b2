@@ -1,0 +1,10 @@
+
+public interface Dict<V> {
+	
+	public boolean hasKey(String key);
+	
+	public V lookup(String key);
+	
+    public Dict<V> set(String key, V v);
+	
+}

@@ -1,0 +1,68 @@
+import tester.Tester;
+
+
+public class Examples {
+	Dict<Integer> e = new emptyDict<Integer>();
+	Dict<String> exEmpty = new emptyDict<String>();
+	Dict<Trie<Integer>> et = new emptyDict<Trie<Integer>>();
+	consDict<String> exCons = new consDict<String>("one", "value", exEmpty);
+	Trie<Integer> ape = new entry<Integer>(3, et);
+	Trie<Integer> api = new entry<Integer>(30, et);
+	Trie<Integer> ace = new entry<Integer>(1, et);
+	Trie<Integer> an = new entry<Integer>(7, et);
+	Dict<Trie<Integer>> dictap = new consDict<Trie<Integer>>("e", ape, new consDict<Trie<Integer>>("i", api, et));
+	Dict<Trie<Integer>> dicte = new consDict<Trie<Integer>>("e", ace, et);
+	Dict<Trie<Integer>> dictn = new consDict<Trie<Integer>>("n", an, et);
+	Trie<Integer> ap = new noValue<Integer>(dictap);
+	Trie<Integer> ac = new noValue<Integer>(dicte);
+	Dict<Trie<Integer>> dictpcn = new consDict<Trie<Integer>>("p", ap, new consDict<Trie<Integer>>("c", ac, new consDict<Trie<Integer>>("n", an, et)));
+	Trie<Integer> a = new entry<Integer>(20, dictpcn);
+	Dict<Trie<Integer>> adict = new consDict<Trie<Integer>>("a", a, et);
+	Trie<Integer> atrie = new noValue<Integer>(adict);
+	void testHasKey(Tester t) {
+		t.checkExpect(e.hasKey("blue"), false);
+		t.checkExpect(exCons.hasKey("blue"), false);
+		t.checkExpect(exCons.hasKey("one"), true);
+		t.checkExpect(atrie.hasKey("a"), true);
+		t.checkExpect(atrie.hasKey("ap"), false);
+	}
+	
+	void testSet(Tester t) {
+		t.checkExpect(e.set("one", 1), new consDict<Integer>("one", 1, e));
+		t.checkExpect(exCons.set("one", "new value"),
+				new consDict<String>("one", "new value", exEmpty));
+		t.checkExpect(exCons.set("blue", "new value"), 
+				new consDict<String>("one", "value", new consDict<String>("blue", "new value", exEmpty)));
+	}
+	
+	void testLookup(Tester t){
+		t.checkExpect(exCons.lookUp("one"), "value");
+		t.checkExpect(exCons.set("blue", "new").lookUp("one"), "value");
+	}
+	
+	void testKeysValues(Tester t){
+		t.checkExpect(e.keys(), new Empty<String>());
+		t.checkExpect(e.values(), new Empty<Integer>());
+		t.checkExpect(exCons.keys(), new Cons<String>("one", new Empty<String>()));
+		t.checkExpect(exCons.values(), new Cons<String>("value", new Empty<String>()));
+	}
+
+	List<Integer> is = new Cons<Integer>(5);
+	List<List<Integer>> iss = new Cons<List<Integer>>(is);
+	void testRev(Tester t) {
+		// the type safe way to write is.first + 3.
+		t.checkExpect(is.accept(new GetFirst()) + 3, 8);
+		// How to test exceptional behavior
+		/*
+	        t.checkException(new RuntimeException("You suck"),
+	                         new Empty<Integer>(),
+	                         	"accept",
+	                         new GetFirst());  
+	       */                
+		t.checkExpect(is.rev(), is);
+	    	}
+	
+	void testMap(Tester t) {
+		t.checkExpect(is.map(new IntToStr()), new Cons<String>("5"));
+	    	}
+}	

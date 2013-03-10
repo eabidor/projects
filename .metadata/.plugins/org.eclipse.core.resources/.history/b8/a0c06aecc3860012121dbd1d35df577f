@@ -1,0 +1,15 @@
+
+public interface Dict<V> {
+	
+	public boolean hasKey(String key);
+	
+	public V lookUp(String key);
+	
+    public Dict<V> set(String key, V v);
+	
+    public List<String> keys();
+    
+    public List<V> values();
+    
+    public <Y> Dict<Y> update(Func<V,Y> f);
+}

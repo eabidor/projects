@@ -1,0 +1,4 @@
+
+public interface Func<X, Y> {
+	public Y call(X x);
+}
