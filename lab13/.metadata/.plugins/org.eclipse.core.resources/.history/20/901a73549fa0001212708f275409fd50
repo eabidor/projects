@@ -1,0 +1,9 @@
+package lab12;
+import colors.*;
+import funworld.*;
+import tester.*;
+import geometry.*;
+
+public class MyWorld extends World {
+
+}

@@ -1,0 +1,20 @@
+package lab12;
+import cs2510h.*;
+import org.apache.commons.*;
+import winterwell.*;
+import com.winterwell.*;
+import oauth.*;
+import com.google.gdata.*;
+public class Driver {
+	static void main(String[] args) {
+		ITwitter twitterClient = new TwitterFactory().makeTwitter();
+		String stat = "";
+		for(String i : args) {
+			stat = stat + i;
+		}
+		
+		twitterClient.setStatus(stat);
+		
+		
+	}
+}

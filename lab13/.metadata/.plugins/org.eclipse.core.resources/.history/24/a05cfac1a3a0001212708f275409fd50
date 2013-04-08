@@ -1,0 +1,23 @@
+package lab12;
+import colors.*;
+import funworld.*;
+import tester.*;
+import geometry.*;
+
+public class MyWorld extends World {
+	Posn p;
+	public MyWorld(Posn p) {
+		this.p = p;
+	}
+	public WorldImage makeImage() {
+		// TODO Auto-generated method stub
+		return new TextImage(p, I)
+	}
+
+	
+	public World onTick() {
+		return new MyWorld(new Posn(p.x, p.y - 1));
+	}
+
+}
+
