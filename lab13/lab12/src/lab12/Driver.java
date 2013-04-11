@@ -2,14 +2,14 @@ package lab12;
 import java.util.List;
 
 import cs2510h.*;
-import org.apache.commons.*;
-import winterwell.*;
+//import org.apache.commons.*;
+//import winterwell.*;
 import winterwell.jtwitter.Status;
-
-import com.winterwell.*;
-import oauth.*;
-import com.google.gdata.*;
+//import com.winterwell.*;
+//import oauth.*;
+//import com.google.gdata.*;
 public class Driver {
+	ITwitter twitterClient = new TwitterFactory().makeTwitter();
 	public static void main(String[] args) {
 		ITwitter twitterClient = new TwitterFactory().makeTwitter();
 		String status = "";
@@ -37,14 +37,11 @@ public class Driver {
 		}
 		System.out.println(status);
 		
-		new MyWorld("").bigBang(500,500,1);
 	}
 	
 	public String update() {
-		ITwitter twitterClient = new TwitterFactory().makeTwitter();
 		return twitterClient.getStatus().getText();
 	}
-
 	
 	
 	
