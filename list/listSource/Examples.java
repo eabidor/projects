@@ -23,7 +23,7 @@ public class Examples {
 	void testSet(Tester t) {
 		t.checkExpect(e.set("one", 1), new consDict<Integer>("one", 1, e));
 		t.checkExpect(exCons.set("one", "new value"),
-				new consDict<String>("one", "new value", exEmpty));
+				new consDict<String>("dsaone", "new value", exEmpty));
 		t.checkExpect(exCons.set("blue", "new value"), 
 				new consDict<String>("one", "value", new consDict<String>("blue", "new value", exEmpty)));
 	}
